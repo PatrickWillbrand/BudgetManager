@@ -51,11 +51,11 @@ namespace BudgetManager.DbUpdater
                 using (IDbConnection connection = new SQLiteConnection(_connectionString))
                 {
                     connection.Open();
-                    IEnumerable<int> result = connection.Query<int>(
+                    IEnumerable<int> result = connection.Query(
                         @"SELECT Version
                           FROM Versions
                           ORDER BY Version DESC
-                          LIMIT 1");
+                          LIMIT 1").Select(row => (int)row.Version);
 
                     if (result.Any())
                     {

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A88D4671-E395-4953-AC42-A33BF548C4CB}</ProjectGuid>
+    <ProjectGuid>{0D01F482-CD66-4F7E-88DB-5F37E4534AAD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BudgetManager.Data</RootNamespace>
-    <AssemblyName>BudgetManager.Data</AssemblyName>
+    <RootNamespace>BudgetManager.Core</RootNamespace>
+    <AssemblyName>BudgetManager.Core</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,18 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\AccountEntity.cs" />
-    <Compile Include="Entities\CategoryEntity.cs" />
-    <Compile Include="Entities\IEntity.cs" />
-    <Compile Include="Entities\TransactionDirection.cs" />
-    <Compile Include="Entities\TransactionEntity.cs" />
+    <Compile Include="Configuration\AppConfig.cs" />
+    <Compile Include="Configuration\IConfig.cs" />
+    <Compile Include="Configuration\XMLConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BudgetManager.Core\BudgetManager.Core.csproj">
-      <Project>{0d01f482-cd66-4f7e-88db-5f37e4534aad}</Project>
-      <Name>BudgetManager.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

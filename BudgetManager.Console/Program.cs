@@ -1,4 +1,5 @@
-﻿using BudgetManager.DbUpdater;
+﻿using BudgetManager.Core.Configuration;
+using BudgetManager.DbUpdater;
 
 namespace BudgetManager.Console
 {
@@ -6,9 +7,7 @@ namespace BudgetManager.Console
     {
         public static void Main(string[] args)
         {
-            string connectionString = @"Data Source=C:\TEST\budget.sqlite";
-
-            Updater updater = new Updater(connectionString);
+            Updater updater = new Updater(AppConfig.Config.ConnectionString);
             updater.Update();
         }
     }
