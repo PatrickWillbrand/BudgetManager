@@ -61,6 +61,10 @@
       <Project>{0D01F482-CD66-4F7E-88DB-5F37E4534AAD}</Project>
       <Name>BudgetManager.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BudgetManager.Data\BudgetManager.Data.csproj">
+      <Project>{a88d4671-e395-4953-ac42-a33bf548c4cb}</Project>
+      <Name>BudgetManager.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BudgetManager.DbUpdater\BudgetManager.DbUpdater.csproj">
       <Project>{6E7A9C88-05B1-46B2-8048-128006784143}</Project>
       <Name>BudgetManager.DbUpdater</Name>

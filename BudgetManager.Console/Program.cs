@@ -1,5 +1,8 @@
-﻿using BudgetManager.Core.Configuration;
-using BudgetManager.DbUpdater;
+﻿using System;
+using System.Threading.Tasks;
+using BudgetManager.Core.Configuration;
+using BudgetManager.Data;
+using BudgetManager.Data.Entities;
 
 namespace BudgetManager.Console
 {
@@ -7,8 +10,24 @@ namespace BudgetManager.Console
     {
         public static void Main(string[] args)
         {
-            Updater updater = new Updater(AppConfig.Config.ConnectionString);
-            updater.Update();
+            Task.Run(async () =>
+            {
+                using (IUnitOfWork uow = new UnitOfWork(AppConfig.Config.ConnectionString))
+                {
+                    var entity = new CategoryEntity
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Miete",
+                        Description = string.Empty
+                    };
+
+                    await uow.Categories.InsertAsync(entity);
+                    
+                    uow.Commit();
+
+                    var category = uow.Categories.FindByIdAsync(entity.Id);
+                }
+            }).Wait();
         }
     }
 }
