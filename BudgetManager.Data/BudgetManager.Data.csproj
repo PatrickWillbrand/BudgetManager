@@ -53,7 +53,6 @@
     <Compile Include="Entities\AccountEntity.cs" />
     <Compile Include="Entities\CategoryEntity.cs" />
     <Compile Include="Entities\IEntity.cs" />
-    <Compile Include="Entities\TransactionDirection.cs" />
     <Compile Include="Entities\TransactionEntity.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace BudgetManager.Data.Entities
+namespace BudgetManager.Domain
 {
-    public class TransactionEntity : IEntity
+    public class Transaction
     {
         public Guid AccountId { get; set; }
 
@@ -14,7 +14,7 @@ namespace BudgetManager.Data.Entities
 
         public string Description { get; set; }
 
-        public int Direction { get; set; }
+        public TransactionDirection Direction { get; set; }
 
         public Guid Id { get; set; }
     }

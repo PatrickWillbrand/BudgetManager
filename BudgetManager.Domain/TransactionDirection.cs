@@ -1,4 +1,4 @@
-﻿namespace BudgetManager.Data.Entities
+﻿namespace BudgetManager.Domain
 {
     public enum TransactionDirection
     {
