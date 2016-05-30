@@ -40,7 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountService.cs" />
+    <Compile Include="IAccountService.cs" />
     <Compile Include="ITransactionService.cs" />
+    <Compile Include="Mappings\AccountMapper.cs" />
     <Compile Include="Mappings\IMapper.cs" />
     <Compile Include="Mappings\TransactionMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

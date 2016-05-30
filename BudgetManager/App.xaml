@@ -8,7 +8,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
-                    <local:AppBootstrapper x:Key="bootstrapper" />
+                    <local:UnityBootstrapper x:Key="bootstrapper" />
                 </ResourceDictionary>
                 
                 <!-- MahApps -->

@@ -7,24 +7,13 @@
                    xmlns:local="clr-namespace:BudgetManager"
                    WindowTransitionsEnabled="False"
                    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                   TextElement.FontWeight="Regular"
+                   TextElement.FontSize="16"
+                   TextOptions.TextFormattingMode="Ideal" 
+                   TextOptions.TextRenderingMode="Auto"
                    Background="{DynamicResource MaterialDesignPaper}"
                    GlowBrush="{DynamicResource AccentColorBrush}"
-                   FontFamily="{StaticResource DefaultFont}"
-                   Title="Budget Manager" Height="768" Width="1024">
-    <dockablz:Layout>
-        <dragablz:TabablzControl BorderThickness="0"
-                                 Margin="0,-1,0,1">
-            <dragablz:TabablzControl.InterTabController>
-                <dragablz:InterTabController />
-            </dragablz:TabablzControl.InterTabController>
-            <TabItem Header="DASHBOARD">
-            </TabItem>
-            <TabItem Header="BUCHUNGEN">
-            </TabItem>
-            <TabItem Header="KATEGORIEN">
-            </TabItem>
-            <TabItem Header="EINSTELLUNGEN">
-            </TabItem>
-        </dragablz:TabablzControl>
-    </dockablz:Layout>
+                   FontFamily="{StaticResource MaterialDesignFont}"
+                   Height="768" Width="1024">
+    <ContentControl x:Name="ActiveItem" />
 </metro:MetroWindow>
