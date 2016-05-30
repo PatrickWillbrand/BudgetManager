@@ -3,11 +3,11 @@
 namespace BudgetManager
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ShellView.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class ShellView : MetroWindow
     {
-        public MainWindow()
+        public ShellView()
         {
             InitializeComponent();
         }
