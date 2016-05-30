@@ -68,12 +68,6 @@
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BudgetManager.Core\BudgetManager.Core.csproj">
-      <Project>{0d01f482-cd66-4f7e-88db-5f37e4534aad}</Project>
-      <Name>BudgetManager.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

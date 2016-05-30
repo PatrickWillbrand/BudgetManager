@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 using BudgetManager.Core.Configuration;
 using BudgetManager.Data;
 using BudgetManager.Data.Entities;
+using BudgetManager.Domain;
+using BudgetManager.Services;
+using BudgetManager.Services.Mappings;
 
 namespace BudgetManager.Console
 {
@@ -14,18 +17,33 @@ namespace BudgetManager.Console
             {
                 using (IUnitOfWork uow = new UnitOfWork(AppConfig.Config.ConnectionString))
                 {
-                    var entity = new CategoryEntity
+                    Guid account = Guid.NewGuid();
+                    var mapper = new TransactionMapper();
+                    var service = new TransactionService(uow, mapper);
+
+                    var t1 = service.AddAsync(new Transaction
                     {
-                        Id = Guid.NewGuid(),
-                        Name = "Miete",
-                        Description = string.Empty
-                    };
+                        AccountId = account,
+                        Amount = 20,
+                        CategoryId = Guid.NewGuid(),
+                        Date = DateTime.Now,
+                        Description = "Gehalt",
+                        Direction = TransactionDirection.Income
+                    });
 
-                    await uow.Categories.InsertAsync(entity);
-                    
-                    uow.Commit();
+                    var t2 = service.AddAsync(new Transaction
+                    {
+                        AccountId = account,
+                        Amount = 6.5m,
+                        CategoryId = Guid.NewGuid(),
+                        Date = DateTime.Now,
+                        Description = "Miete",
+                        Direction = TransactionDirection.Expense
+                    });
 
-                    var category = uow.Categories.FindByIdAsync(entity.Id);
+                    await Task.WhenAll(t1, t2);
+
+                    var result = await service.GetAllByAccountAsync(account);
                 }
             }).Wait();
         }

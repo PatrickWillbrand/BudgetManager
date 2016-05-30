@@ -7,12 +7,11 @@ namespace BudgetManager.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly IDbConnection _dbConnection;
-        private readonly IDbTransaction _dbTransaction;
         private IAccountRepository _accounts;
         private ICategoryRepository _categories;
+        private IDbConnection _dbConnection;
+        private IDbTransaction _dbTransaction;
         private bool _disposed;
-        private bool _isCommited;
         private ITransactionRepository _transactions;
 
         public UnitOfWork(string connectionString)
@@ -73,20 +72,21 @@ namespace BudgetManager.Data
 
         public void Commit()
         {
-            if (_isCommited)
-            {
-                throw new InvalidOperationException("Unit of work already commited.");
-            }
-
             try
             {
-                _isCommited = true;
                 _dbTransaction.Commit();
             }
             catch
             {
                 Rollback();
                 throw;
+            }
+            finally
+            {
+                _dbTransaction.Dispose();
+                _dbTransaction = _dbConnection.BeginTransaction();
+
+                Clear();
             }
         }
 
@@ -107,12 +107,11 @@ namespace BudgetManager.Data
             {
                 if (disposing)
                 {
-                    if (!_isCommited)
+                    if (_dbTransaction != null)
                     {
                         Rollback();
+                        _dbTransaction.Dispose();
                     }
-
-                    _dbTransaction.Dispose();
 
                     if (_dbConnection.State == ConnectionState.Open)
                     {
@@ -123,6 +122,13 @@ namespace BudgetManager.Data
             }
 
             _disposed = true;
+        }
+
+        private void Clear()
+        {
+            _accounts = null;
+            _categories = null;
+            _transactions = null;
         }
     }
 }

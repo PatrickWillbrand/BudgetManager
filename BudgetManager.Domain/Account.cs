@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BudgetManager.Domain
 {
@@ -39,5 +40,15 @@ namespace BudgetManager.Domain
         public string LastName { get; set; }
 
         public IList<Transaction> Transactions { get; set; }
+
+        public IEnumerable<Transaction> GetTransactionsFromMonth(int year, int month)
+        {
+            return Transactions.Where(x => x.Date.Year == year && x.Date.Month == month);
+        }
+
+        public IEnumerable<Transaction> GetTransactionsFromYear(int year)
+        {
+            return Transactions.Where(x => x.Date.Year == year);
+        }
     }
 }

@@ -69,6 +69,14 @@
       <Project>{6E7A9C88-05B1-46B2-8048-128006784143}</Project>
       <Name>BudgetManager.DbUpdater</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BudgetManager.Domain\BudgetManager.Domain.csproj">
+      <Project>{cdad868f-bd00-4868-a4bc-a3531282de1e}</Project>
+      <Name>BudgetManager.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BudgetManager.Services\BudgetManager.Services.csproj">
+      <Project>{72130A8F-813B-45F0-B12C-711D994DAFD2}</Project>
+      <Name>BudgetManager.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.101.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.101.0\build\net46\System.Data.SQLite.Core.targets')" />

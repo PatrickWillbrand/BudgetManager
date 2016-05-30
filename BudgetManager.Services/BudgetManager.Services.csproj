@@ -40,7 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ITransactionService.cs" />
+    <Compile Include="Mappings\IMapper.cs" />
+    <Compile Include="Mappings\TransactionMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransactionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BudgetManager.Core\BudgetManager.Core.csproj">

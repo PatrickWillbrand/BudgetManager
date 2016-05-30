@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManager.Domain", "Bud
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManager.Services", "BudgetManager.Services\BudgetManager.Services.csproj", "{72130A8F-813B-45F0-B12C-711D994DAFD2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManager", "BudgetManager\BudgetManager.csproj", "{B3C42FE8-0BB2-4134-8C84-6575EDC8E2EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{72130A8F-813B-45F0-B12C-711D994DAFD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72130A8F-813B-45F0-B12C-711D994DAFD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72130A8F-813B-45F0-B12C-711D994DAFD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3C42FE8-0BB2-4134-8C84-6575EDC8E2EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C42FE8-0BB2-4134-8C84-6575EDC8E2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C42FE8-0BB2-4134-8C84-6575EDC8E2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C42FE8-0BB2-4134-8C84-6575EDC8E2EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
