@@ -39,7 +39,11 @@ namespace BudgetManager.Domain
 
         public string LastName { get; set; }
 
+        public string Password { get; set; }
+
         public IList<Transaction> Transactions { get; set; }
+
+        public string UserName { get; set; }
 
         public IEnumerable<Transaction> GetTransactionsFromMonth(int year, int month)
         {

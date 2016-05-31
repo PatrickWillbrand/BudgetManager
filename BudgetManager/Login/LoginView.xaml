@@ -16,26 +16,27 @@
         </Style>
     </UserControl.Resources>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center"
-          Width="420" Height="420">
+          Height="420" Width="550">
         <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0"
-                       Style="{StaticResource MaterialDesignDisplay1TextBlock}"
-                       Margin="16 16 16 2"
-                       Text="Anmeldung" />
+        <TextBlock Grid.Row="0"
+                   Style="{StaticResource MaterialDesignDisplay1TextBlock}"
+                   Margin="16 16 16 2"
+                   Text="Anmeldung" />
 
         <Grid Grid.Row="1"
               Margin="16"
-              FocusManager.FocusedElement="{Binding ElementName=UserNameTextBox}">
+              FocusManager.FocusedElement="{Binding ElementName=UserName}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0">
+            <Grid Grid.Column="0"
+                  Margin="8 24">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -51,8 +52,8 @@
                     <materialDesign:PackIcon Grid.Column="0" 
                                              Kind="Account"
                                              VerticalAlignment="Center"
-                                             Foreground="{Binding ElementName=UserNameTextBox, Path=BorderBrush}" />
-                    <TextBox x:Name="UserNameTextBox"
+                                             Foreground="{Binding ElementName=UserName, Path=BorderBrush}" />
+                    <TextBox x:Name="UserName"
                              Grid.Column="1"
                              materialDesign:TextFieldAssist.Hint="Benutzername" />
                 </Grid>
@@ -66,8 +67,8 @@
                     <materialDesign:PackIcon Grid.Column="0" 
                                              Kind="Lock"
                                              VerticalAlignment="Center"
-                                             Foreground="{Binding ElementName=PasswordBox, Path=BorderBrush}" />
-                    <PasswordBox x:Name="PasswordBox"
+                                             Foreground="{Binding ElementName=Password, Path=BorderBrush}" />
+                    <PasswordBox x:Name="Password"
                                  Grid.Column="1"
                                  materialDesign:TextFieldAssist.Hint="Passwort" />
                 </Grid>
@@ -84,9 +85,26 @@
                 </Button>
             </Grid>
 
-            <Grid Grid.Column="1">
+            <Border Grid.Column="1"
+                    Margin="8 0"
+                    BorderThickness="1 0 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                <Grid Margin="16 24 0 24">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-            </Grid>
+                    <Button x:Name="ShowRegister"
+                            Grid.Row="2"
+                            Style="{DynamicResource MaterialDesignRaisedButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AccountPlus" />
+                            <TextBlock Margin="8 0 0 0" 
+                                       VerticalAlignment="Center"
+                                       Text="Neues Konto erstellen" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
         </Grid>
     </Grid>
 </UserControl>

@@ -32,9 +32,7 @@ namespace BudgetManager
             _container = new UnityContainer();
             _container.RegisterType<IWindowManager, WindowManager>();
             _container.RegisterType<IEventAggregator, EventAggregator>();
-
-            _container.RegisterType<IUnitOfWork, UnitOfWork>(new InjectionConstructor((AppConfig.Config.ConnectionString)));
-
+            
             _container.RegisterType<IMapper<Account, AccountEntity>, AccountMapper>();
             _container.RegisterType<IMapper<Transaction, TransactionEntity>, TransactionMapper>();
 
