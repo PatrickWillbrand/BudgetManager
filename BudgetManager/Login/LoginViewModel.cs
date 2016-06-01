@@ -11,13 +11,11 @@ namespace BudgetManager.Login
     public class LoginViewModel : ValidatableScreen<LoginViewModel>
     {
         private readonly IAccountService _accountService;
-        private readonly IWindowManager _windowManager;
         private string _password;
         private string _userName;
 
-        public LoginViewModel(IWindowManager windowManager, IAccountService accountService) : base(new LoginViewModelValidator())
+        public LoginViewModel(IAccountService accountService) : base(new LoginViewModelValidator())
         {
-            _windowManager = windowManager;
             _accountService = accountService;
         }
 

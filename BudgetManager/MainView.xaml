@@ -8,24 +8,13 @@
                       Background="{DynamicResource MaterialDesignPaper}"
                       FontFamily="{StaticResource DefaultFont}">
     <dockablz:Layout>
-        <dragablz:TabablzControl BorderThickness="0"
+        <dragablz:TabablzControl x:Name="Items"
+                                 BorderThickness="0"
                                  FixedHeaderCount="4"
                                  Margin="0,-1,0,1">
             <dragablz:TabablzControl.InterTabController>
                 <dragablz:InterTabController />
             </dragablz:TabablzControl.InterTabController>
-            <TabItem Header="Dashboard">
-                
-            </TabItem>
-            <TabItem Header="Buchungen">
-                
-            </TabItem>
-            <TabItem Header="Kategorien">
-                
-            </TabItem>
-            <TabItem Header="Einstellungen">
-
-            </TabItem>
         </dragablz:TabablzControl>
     </dockablz:Layout>
 </UserControl>

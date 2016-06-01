@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="BudgetManager.Categories.CategoryMasterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:domain="clr-namespace:BudgetManager.Domain;assembly=BudgetManager.Domain"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ListBox x:Name="Categories"
+                 SelectedItem="{Binding SelectedItem}"
+                 Grid.Row="0"
+                 Grid.IsSharedSizeScope="True"
+                 Margin="0 8">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type domain:Category}">
+                    <Border x:Name="Border" Padding="4">
+                        <Grid>
+                            <StackPanel Margin="8 0 0 0" Grid.Column="1">
+                                <TextBlock FontWeight="Bold" Text="{Binding Name}" />
+                                <TextBlock Text="{Binding Description}" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button x:Name="AddNewCategory"
+                Grid.Row="1"
+                Style="{DynamicResource MaterialDesignRaisedButton}">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Plus" />
+                <TextBlock Margin="8 0 0 0" 
+                           VerticalAlignment="Center"
+                           Text="Neue Kategorie erstellen" />
+            </StackPanel>
+        </Button>
+    </Grid>
+</UserControl>

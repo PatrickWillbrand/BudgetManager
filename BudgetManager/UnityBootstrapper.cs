@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows;
 using BudgetManager.Core.Configuration;
-using BudgetManager.Data;
 using BudgetManager.Data.Entities;
 using BudgetManager.DbUpdater;
 using BudgetManager.Domain;
@@ -33,11 +32,13 @@ namespace BudgetManager
             _container = new UnityContainer();
             _container.RegisterType<IWindowManager, WindowManager>();
             _container.RegisterType<IEventAggregator, EventAggregator>();
-            
+
             _container.RegisterType<IMapper<Account, AccountEntity>, AccountMapper>();
+            _container.RegisterType<IMapper<Category, CategoryEntity>, CategoryMapper>();
             _container.RegisterType<IMapper<Transaction, TransactionEntity>, TransactionMapper>();
 
             _container.RegisterType<IAccountService, AccountService>();
+            _container.RegisterType<ICategoryService, CategoryService>();
             _container.RegisterType<ITransactionService, TransactionService>();
 
             Updater updater = new Updater(AppConfig.Config.ConnectionString);

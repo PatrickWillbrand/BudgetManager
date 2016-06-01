@@ -113,15 +113,40 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Categories\CategoryDetailsView.xaml.cs">
+      <DependentUpon>CategoryDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Categories\CategoryDetailsViewModel.cs" />
+    <Compile Include="Categories\CategoryMasterView.xaml.cs">
+      <DependentUpon>CategoryMasterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Categories\CategoryMasterViewModel.cs" />
+    <Compile Include="Categories\CategoryWorkspaceView.xaml.cs">
+      <DependentUpon>CategoryWorkspaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Categories\CategoryWorkspaceViewModel.cs" />
     <Compile Include="Controls\BoundPasswordBox.cs" />
+    <Compile Include="Dashboard\DashboardWorkspaceView.xaml.cs">
+      <DependentUpon>DashboardWorkspaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\DashboardWorkspaceViewModel.cs" />
     <Compile Include="Dialogs\MessageDialog.xaml.cs">
       <DependentUpon>MessageDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Messages\CategoryChangedMessage.cs" />
     <Compile Include="Login\LoginViewModelValidator.cs" />
     <Compile Include="MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainViewModel.cs" />
+    <Compile Include="Settings\SettingsWorkspaceView.xaml.cs">
+      <DependentUpon>SettingsWorkspaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\SettingsWorkspaceViewModel.cs" />
+    <Compile Include="Transactions\TransactionsWorkspaceViewModel.cs" />
+    <Compile Include="Transactions\TransactionsWorkspaceView.xaml.cs">
+      <DependentUpon>TransactionsWorkspaceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Validation\IValidatable.cs" />
     <Compile Include="Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -135,6 +160,22 @@
     <Compile Include="Login\LoginViewModel.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="Validation\ValidatableScreen.cs" />
+    <Page Include="Categories\CategoryDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Categories\CategoryMasterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Categories\CategoryWorkspaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\DashboardWorkspaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\MessageDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +192,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Settings\SettingsWorkspaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -163,6 +208,10 @@
       <DependentUpon>ShellView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Transactions\TransactionsWorkspaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -214,11 +263,7 @@
       <Name>BudgetManager.Services</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Categories\" />
-    <Folder Include="Dashboard\" />
-    <Folder Include="Transactions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.101.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.101.0\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
