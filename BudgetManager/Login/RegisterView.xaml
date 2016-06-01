@@ -5,10 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             FocusManager.FocusedElement="{Binding ElementName=FirstName}">
     <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Button x:Name="NavigateBack"
@@ -23,5 +25,134 @@
                    Style="{StaticResource MaterialDesignHeadlineTextBlock}"
                    Margin="50 6 0 0"
                    Text="Neues Konto erstellen" />
+
+        <Grid Grid.Row="1"
+              Height="421" Width="500">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0"
+                  Margin="0 24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Grid.Column="0"
+                                             Margin="0 8 0 0"
+                                             Kind="Account"
+                                             VerticalAlignment="Center"
+                                             Foreground="{Binding ElementName=FirstName, Path=BorderBrush}" />
+                    <TextBox x:Name="FirstName"
+                             Grid.Column="1"
+                             materialDesign:TextFieldAssist.Hint="Vorname"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:PackIcon Grid.Column="0"
+                                             Margin="0 8 0 0"
+                                             Kind="Account"
+                                             VerticalAlignment="Center"
+                                             Foreground="{Binding ElementName=LastName, Path=BorderBrush}" />
+                    <TextBox x:Name="LastName"
+                             Grid.Column="1"
+                             materialDesign:TextFieldAssist.Hint="Nachname"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1"
+                  Margin="0 8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <materialDesign:PackIcon Grid.Column="0"
+                                         Margin="0 8 0 0"
+                                         Kind="Account"
+                                         VerticalAlignment="Center"
+                                         Foreground="{Binding ElementName=UserName, Path=BorderBrush}" />
+                <TextBox x:Name="UserName"
+                         Grid.Column="1"
+                         materialDesign:TextFieldAssist.Hint="Benutzername"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            </Grid>
+
+            <Grid Grid.Row="2"
+                  Margin="0 8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <materialDesign:PackIcon Grid.Column="0" 
+                                         Kind="Lock"
+                                         VerticalAlignment="Center"
+                                         Foreground="{Binding ElementName=Password, Path=BorderBrush}" />
+                <PasswordBox x:Name="Password"
+                             Grid.Column="1"
+                             materialDesign:TextFieldAssist.Hint="Passwort" />
+            </Grid>
+
+            <Grid Grid.Row="3"
+                  Margin="0 8 0 24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <materialDesign:PackIcon Grid.Column="0" 
+                                         Kind="Lock"
+                                         VerticalAlignment="Center"
+                                         Foreground="{Binding ElementName=RepeatPassword, Path=BorderBrush}" />
+                <PasswordBox x:Name="RepeatPassword"
+                             Grid.Column="1"
+                             materialDesign:TextFieldAssist.Hint="Passwort wiederholen" />
+            </Grid>
+
+            <Grid Grid.Row="4"
+                  Margin="0 16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <materialDesign:PackIcon Grid.Column="0" 
+                                         Margin="0 8 0 0"
+                                         Kind="CurrencyEur"
+                                         VerticalAlignment="Center"
+                                         Foreground="{Binding ElementName=StartAmount, Path=BorderBrush}" />
+                <TextBox x:Name="StartAmount"
+                         Grid.Column="1"
+                         materialDesign:TextFieldAssist.Hint="Startbetrag"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+            </Grid>
+
+
+            <Button x:Name="RegisterAccountAsync"
+                    Grid.Row="5"
+                    Style="{DynamicResource MaterialDesignRaisedButton}"
+                    Margin="0 24">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="AccountPlus" />
+                    <TextBlock Margin="8 0 0 0" 
+                               VerticalAlignment="Center"
+                               Text="Konto erstellen" />
+                </StackPanel>
+            </Button>
+        </Grid>
     </Grid>
 </UserControl>

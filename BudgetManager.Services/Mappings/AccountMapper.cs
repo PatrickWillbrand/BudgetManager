@@ -11,7 +11,10 @@ namespace BudgetManager.Services.Mappings
             {
                 FirstName = item.FirstName,
                 Id = item.Id,
-                LastName = item.LastName
+                LastName = item.LastName,
+                Password = item.Password,
+                Salt = item.Salt,
+                UserName = item.UserName
             };
         }
 
@@ -21,7 +24,10 @@ namespace BudgetManager.Services.Mappings
             {
                 FirstName = entity.FirstName,
                 Id = entity.Id,
-                LastName = entity.LastName
+                LastName = entity.LastName,
+                Password = entity.Password,
+                Salt = entity.Salt,
+                UserName = entity.UserName
             };
         }
     }

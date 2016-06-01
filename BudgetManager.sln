@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManager.Data", "Budge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManager.DbUpdater", "BudgetManager.DbUpdater\BudgetManager.DbUpdater.csproj", "{6E7A9C88-05B1-46B2-8048-128006784143}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManager.Console", "BudgetManager.Console\BudgetManager.Console.csproj", "{C5A91DBE-48E9-4D4D-B755-32BE63F07FE3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManager.Core", "BudgetManager.Core\BudgetManager.Core.csproj", "{0D01F482-CD66-4F7E-88DB-5F37E4534AAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetManager.Domain", "BudgetManager.Domain\BudgetManager.Domain.csproj", "{CDAD868F-BD00-4868-A4BC-A3531282DE1E}"
@@ -31,10 +29,6 @@ Global
 		{6E7A9C88-05B1-46B2-8048-128006784143}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E7A9C88-05B1-46B2-8048-128006784143}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E7A9C88-05B1-46B2-8048-128006784143}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5A91DBE-48E9-4D4D-B755-32BE63F07FE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5A91DBE-48E9-4D4D-B755-32BE63F07FE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5A91DBE-48E9-4D4D-B755-32BE63F07FE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5A91DBE-48E9-4D4D-B755-32BE63F07FE3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0D01F482-CD66-4F7E-88DB-5F37E4534AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D01F482-CD66-4F7E-88DB-5F37E4534AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D01F482-CD66-4F7E-88DB-5F37E4534AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU

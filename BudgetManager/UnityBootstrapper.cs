@@ -4,6 +4,7 @@ using System.Windows;
 using BudgetManager.Core.Configuration;
 using BudgetManager.Data;
 using BudgetManager.Data.Entities;
+using BudgetManager.DbUpdater;
 using BudgetManager.Domain;
 using BudgetManager.Services;
 using BudgetManager.Services.Mappings;
@@ -38,6 +39,9 @@ namespace BudgetManager
 
             _container.RegisterType<IAccountService, AccountService>();
             _container.RegisterType<ITransactionService, TransactionService>();
+
+            Updater updater = new Updater(AppConfig.Config.ConnectionString);
+            updater.Update();
 
             base.Configure();
         }

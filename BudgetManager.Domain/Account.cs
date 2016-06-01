@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BudgetManager.Domain.Validators;
+using FluentValidation.Results;
 
 namespace BudgetManager.Domain
 {
-    public class Account
+    public class Account : IValidatable
     {
+        private AccountValidator _validator;
+
         public Account()
         {
+            _validator = new AccountValidator();
+
             Transactions = new List<Transaction>();
         }
 
@@ -37,9 +43,20 @@ namespace BudgetManager.Domain
 
         public Guid Id { get; set; }
 
+        public bool IsValid
+        {
+            get
+            {
+                ValidationResult results = _validator.Validate(this);
+                return results.IsValid;
+            }
+        }
+
         public string LastName { get; set; }
 
         public string Password { get; set; }
+
+        public string Salt { get; set; }
 
         public IList<Transaction> Transactions { get; set; }
 
@@ -53,6 +70,18 @@ namespace BudgetManager.Domain
         public IEnumerable<Transaction> GetTransactionsFromYear(int year)
         {
             return Transactions.Where(x => x.Date.Year == year);
+        }
+
+        public IEnumerable<ValidationFailure> ValidateAll()
+        {
+            ValidationResult results = _validator.Validate(this);
+            return results.Errors;
+        }
+
+        public IEnumerable<ValidationFailure> ValidateProperty(string propertyName)
+        {
+            ValidationResult results = _validator.Validate(this);
+            return results.Errors.Where(x => x.PropertyName == propertyName);
         }
     }
 }

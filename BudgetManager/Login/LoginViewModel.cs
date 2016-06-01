@@ -1,5 +1,4 @@
-﻿using BudgetManager.Domain;
-using BudgetManager.Services;
+﻿using BudgetManager.Services;
 using Caliburn.Micro;
 
 namespace BudgetManager.Login
@@ -7,30 +6,30 @@ namespace BudgetManager.Login
     public class LoginViewModel : Screen
     {
         private readonly IAccountService _accountService;
-        private Account _account;
+        private string _password;
+        private string _userName;
 
         public LoginViewModel(IAccountService accountService)
         {
             _accountService = accountService;
-            _account = new Account();
         }
 
         public string Password
         {
-            get { return _account.Password; }
+            get { return _password; }
             set
             {
-                _account.Password = value;
+                _password = value;
                 NotifyOfPropertyChange(() => Password);
             }
         }
 
         public string UserName
         {
-            get { return _account.UserName; }
+            get { return _userName; }
             set
             {
-                _account.UserName = value;
+                _userName = value;
                 NotifyOfPropertyChange(() => UserName);
             }
         }

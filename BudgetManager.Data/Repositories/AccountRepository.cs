@@ -28,8 +28,8 @@ namespace BudgetManager.Data.Repositories
 
         public Task InsertAsync(AccountEntity entity)
         {
-            string sql = @"INSERT INTO Accounts (Id, FirstName, LastName)
-                           VALUES (@Id, @FirstName, @LastName)";
+            string sql = @"INSERT INTO Accounts (Id, FirstName, LastName, UserName, Password, Salt)
+                           VALUES (@Id, @FirstName, @LastName, @UserName, @Password, @Salt)";
             return ExecuteAsync(_unitOfWork.DbConnection, sql, Mapping(entity), _unitOfWork.DbTransaction);
         }
 
@@ -48,7 +48,10 @@ namespace BudgetManager.Data.Repositories
         {
             string sql = @"UPDATE Accounts SET
                              FirstName = @FirstName,
-                             LastName = @LastName
+                             LastName = @LastName,
+                             UserName = @UserName,
+                             Password = @Password,
+                             Salt = @Salt
                            WHERE Id = @Id";
             return ExecuteAsync(_unitOfWork.DbConnection, sql, Mapping(entity), _unitOfWork.DbTransaction);
         }
@@ -59,7 +62,10 @@ namespace BudgetManager.Data.Repositories
             {
                 Id = item.Id,
                 FirstName = item.FirstName,
-                LastName = item.LastName
+                LastName = item.LastName,
+                UserName = item.UserName,
+                Password = item.Password,
+                Salt = item.Salt
             };
         }
     }

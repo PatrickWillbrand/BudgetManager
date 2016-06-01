@@ -1,10 +1,15 @@
-﻿using BudgetManager.Domain;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using BudgetManager.Domain;
 using BudgetManager.Services;
 using Caliburn.Micro;
+using FluentValidation.Results;
 
 namespace BudgetManager.Login
 {
-    public class RegisterViewModel : Screen
+    public class RegisterViewModel : Screen, IDataErrorInfo
     {
         private readonly IAccountService _accountService;
         private Account _account;
@@ -14,6 +19,15 @@ namespace BudgetManager.Login
         {
             _accountService = accountService;
             _account = new Account();
+        }
+
+        public string Error
+        {
+            get
+            {
+                IEnumerable<ValidationFailure> results = _account.ValidateAll();
+                return string.Join(Environment.NewLine, results.Select(x => x.ErrorMessage));
+            }
         }
 
         public string FirstName
@@ -66,10 +80,26 @@ namespace BudgetManager.Login
             }
         }
 
+        public string this[string columnName]
+        {
+            get
+            {
+                IEnumerable<ValidationFailure> result = _account.ValidateProperty(columnName);
+                ValidationFailure error = result.FirstOrDefault();
+                return error.ErrorMessage;
+            }
+        }
+
         public void NavigateBack()
         {
             var viewModel = IoC.Get<LoginViewModel>();
             ((IConductor)Parent).ActivateItem(viewModel);
+        }
+
+        public async void RegisterAccountAsync()
+        {
+            await _accountService.RegisterAsync(_account, StartAmount);
+            NavigateBack();
         }
     }
 }

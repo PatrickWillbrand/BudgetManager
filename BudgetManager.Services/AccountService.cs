@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using BudgetManager.Core.Configuration;
+using BudgetManager.Core.Security;
 using BudgetManager.Data;
 using BudgetManager.Data.Entities;
 using BudgetManager.Domain;
@@ -20,7 +21,7 @@ namespace BudgetManager.Services
             _transactionMapper = transactionMapper;
         }
 
-        public Task LoginAsync(Account account)
+        public Task LoginAsync(Account account, string password)
         {
             throw new NotImplementedException();
         }
@@ -31,6 +32,9 @@ namespace BudgetManager.Services
             {
                 Guid id = Guid.NewGuid();
                 account.Id = id;
+                account.Salt = SaltCreator.CreateRandomSalt();
+                account.Password += account.Salt;
+                account.Password = HashFunctions.CreateSHA256(account.Password);
 
                 AccountEntity accountEntity = _accountMapper.Map(account);
                 var task1 = unitOfWork.Account.InsertAsync(accountEntity);

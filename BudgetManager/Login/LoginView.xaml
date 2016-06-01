@@ -28,8 +28,7 @@
                    Text="Anmeldung" />
 
         <Grid Grid.Row="1"
-              Margin="16"
-              FocusManager.FocusedElement="{Binding ElementName=UserName}">
+              Margin="16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
