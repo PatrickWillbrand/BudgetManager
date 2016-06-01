@@ -9,6 +9,8 @@ namespace BudgetManager.Data.Repositories
     {
         Task<AccountEntity> FindByIdAsync(Guid id);
 
+        Task<AccountEntity> FindByUserNameAsync(string userName);
+
         Task<IEnumerable<AccountEntity>> GetAllAsync();
 
         Task InsertAsync(AccountEntity entity);

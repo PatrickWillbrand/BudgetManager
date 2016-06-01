@@ -1,33 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using BudgetManager.Domain;
+﻿using BudgetManager.Domain;
 using BudgetManager.Services;
+using BudgetManager.Validation;
 using Caliburn.Micro;
-using FluentValidation.Results;
 
 namespace BudgetManager.Login
 {
-    public class RegisterViewModel : Screen, IDataErrorInfo
+    public class RegisterViewModel : ValidatableScreen<RegisterViewModel>
     {
         private readonly IAccountService _accountService;
         private Account _account;
+        private string _repeatPassword;
         private decimal _startAmount;
 
-        public RegisterViewModel(IAccountService accountService)
+        public RegisterViewModel(IAccountService accountService) : base(new RegisterViewModelValidator())
         {
             _accountService = accountService;
             _account = new Account();
-        }
-
-        public string Error
-        {
-            get
-            {
-                IEnumerable<ValidationFailure> results = _account.ValidateAll();
-                return string.Join(Environment.NewLine, results.Select(x => x.ErrorMessage));
-            }
         }
 
         public string FirstName
@@ -60,6 +48,16 @@ namespace BudgetManager.Login
             }
         }
 
+        public string RepeatPassword
+        {
+            get { return _repeatPassword; }
+            set
+            {
+                _repeatPassword = value;
+                NotifyOfPropertyChange(() => RepeatPassword);
+            }
+        }
+
         public decimal StartAmount
         {
             get { return _startAmount; }
@@ -80,16 +78,6 @@ namespace BudgetManager.Login
             }
         }
 
-        public string this[string columnName]
-        {
-            get
-            {
-                IEnumerable<ValidationFailure> result = _account.ValidateProperty(columnName);
-                ValidationFailure error = result.FirstOrDefault();
-                return error.ErrorMessage;
-            }
-        }
-
         public void NavigateBack()
         {
             var viewModel = IoC.Get<LoginViewModel>();
@@ -98,8 +86,11 @@ namespace BudgetManager.Login
 
         public async void RegisterAccountAsync()
         {
-            await _accountService.RegisterAsync(_account, StartAmount);
-            NavigateBack();
+            if (IsValid)
+            {
+                await _accountService.RegisterAsync(_account, StartAmount);
+                NavigateBack();
+            }
         }
     }
 }

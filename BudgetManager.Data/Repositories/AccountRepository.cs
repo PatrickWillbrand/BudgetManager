@@ -20,6 +20,12 @@ namespace BudgetManager.Data.Repositories
             return ExecuteScalarAsync<AccountEntity>(_unitOfWork.DbConnection, sql, new { Id = id });
         }
 
+        public Task<AccountEntity> FindByUserNameAsync(string userName)
+        {
+            string sql = "SELECT * FROM Accounts WHERE UserName = @Username";
+            return ExecuteScalarAsync<AccountEntity>(_unitOfWork.DbConnection, sql, new { UserName = userName });
+        }
+
         public Task<IEnumerable<AccountEntity>> GetAllAsync()
         {
             string sql = "SELECT * FROM Accounts";

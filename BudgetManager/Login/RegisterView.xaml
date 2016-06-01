@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:controls="clr-namespace:BudgetManager.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
-             FocusManager.FocusedElement="{Binding ElementName=FirstName}">
+             d:DesignHeight="300" d:DesignWidth="300">
     <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -27,7 +27,7 @@
                    Text="Neues Konto erstellen" />
 
         <Grid Grid.Row="1"
-              Height="421" Width="500">
+              Height="400" Width="500">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -106,7 +106,8 @@
                                          Foreground="{Binding ElementName=Password, Path=BorderBrush}" />
                 <PasswordBox x:Name="Password"
                              Grid.Column="1"
-                             materialDesign:TextFieldAssist.Hint="Passwort" />
+                             materialDesign:TextFieldAssist.Hint="Passwort"
+                             controls:BoundPasswordBox.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
             </Grid>
 
             <Grid Grid.Row="3"
@@ -121,7 +122,8 @@
                                          Foreground="{Binding ElementName=RepeatPassword, Path=BorderBrush}" />
                 <PasswordBox x:Name="RepeatPassword"
                              Grid.Column="1"
-                             materialDesign:TextFieldAssist.Hint="Passwort wiederholen" />
+                             materialDesign:TextFieldAssist.Hint="Passwort wiederholen"
+                             controls:BoundPasswordBox.BoundPassword="{Binding RepeatPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
             </Grid>
 
             <Grid Grid.Row="4"

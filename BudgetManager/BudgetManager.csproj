@@ -113,6 +113,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\BoundPasswordBox.cs" />
+    <Compile Include="Dialogs\MessageDialog.xaml.cs">
+      <DependentUpon>MessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login\LoginViewModelValidator.cs" />
+    <Compile Include="Validation\IValidatable.cs" />
     <Compile Include="Login\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -120,9 +126,15 @@
       <DependentUpon>RegisterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Login\RegisterViewModel.cs" />
+    <Compile Include="Login\RegisterViewModelValidator.cs" />
     <Compile Include="UnityBootstrapper.cs" />
     <Compile Include="Login\LoginViewModel.cs" />
     <Compile Include="ShellViewModel.cs" />
+    <Compile Include="Validation\ValidatableScreen.cs" />
+    <Page Include="Dialogs\MessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

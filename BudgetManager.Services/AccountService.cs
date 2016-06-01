@@ -21,9 +21,22 @@ namespace BudgetManager.Services
             _transactionMapper = transactionMapper;
         }
 
-        public Task LoginAsync(Account account, string password)
+        public async Task<Account> LoginAsync(string userName, string password)
         {
-            throw new NotImplementedException();
+            using (IUnitOfWork unitOfWork = new UnitOfWork(AppConfig.Config.ConnectionString))
+            {
+                AccountEntity entity = await unitOfWork.Account.FindByUserNameAsync(userName);
+                if (entity != null)
+                {
+                    Account account = _accountMapper.Map(entity);
+                    if (ConfirmPassword(account, password))
+                    {
+                        return account;
+                    }
+                }
+            }
+
+            throw new Exception("Benutzername und Passwort stimmen nicht überein.");
         }
 
         public async Task RegisterAsync(Account account, decimal startAmount)
@@ -46,6 +59,12 @@ namespace BudgetManager.Services
                 await Task.WhenAll(task1, task2);
                 unitOfWork.Commit();
             }
+        }
+
+        private bool ConfirmPassword(Account account, string password)
+        {
+            string saltedAndHashedPassword = HashFunctions.CreateSHA256(password + account.Salt);
+            return account.Password == saltedAndHashedPassword;
         }
 
         private Transaction CreateStartTransaction(decimal amount, Guid accountId)

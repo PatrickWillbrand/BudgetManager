@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:controls="clr-namespace:BudgetManager.Controls"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -69,10 +70,12 @@
                                              Foreground="{Binding ElementName=Password, Path=BorderBrush}" />
                     <PasswordBox x:Name="Password"
                                  Grid.Column="1"
-                                 materialDesign:TextFieldAssist.Hint="Passwort" />
+                                 materialDesign:TextFieldAssist.Hint="Passwort"
+                                 controls:BoundPasswordBox.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
                 </Grid>
 
-                <Button Grid.Row="2"
+                <Button x:Name="LoginAsync"
+                        Grid.Row="2"
                         Style="{DynamicResource MaterialDesignRaisedButton}"
                         Margin="0 16">
                     <StackPanel Orientation="Horizontal">

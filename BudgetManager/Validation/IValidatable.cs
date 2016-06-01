@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using FluentValidation.Results;
 
-namespace BudgetManager.Domain.Validators
+namespace BudgetManager.Validation
 {
-    public interface IValidatable
+    public interface IValidatable : IDataErrorInfo
     {
         bool IsValid { get; }
 

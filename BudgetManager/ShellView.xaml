@@ -4,6 +4,7 @@
                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                    xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
                    xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
+                   xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                    xmlns:local="clr-namespace:BudgetManager"
                    WindowTransitionsEnabled="False"
                    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -16,5 +17,7 @@
                    FontFamily="{StaticResource MaterialDesignFont}"
                    Height="768" Width="1024"
                    WindowStartupLocation="CenterScreen">
-    <ContentControl x:Name="ActiveItem" />
+    <materialDesign:DialogHost Identifier="RootDialog">
+        <ContentControl x:Name="ActiveItem" />
+    </materialDesign:DialogHost>
 </metro:MetroWindow>
