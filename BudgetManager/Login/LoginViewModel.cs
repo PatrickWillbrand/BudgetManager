@@ -48,6 +48,8 @@ namespace BudgetManager.Login
                 try
                 {
                     Account account = await _accountService.LoginAsync(UserName, Password);
+                    MainViewModel viewModel = new MainViewModel(account);
+                    ((IConductor)Parent).ActivateItem(viewModel);
                 }
                 catch (Exception ex)
                 {

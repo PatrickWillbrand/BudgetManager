@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using BudgetManager.Core.Configuration;
 using BudgetManager.Core.Security;
@@ -31,6 +33,7 @@ namespace BudgetManager.Services
                     Account account = _accountMapper.Map(entity);
                     if (ConfirmPassword(account, password))
                     {
+                        account.Transactions = await GetAccountTransactionsAsync(unitOfWork, account.Id);
                         return account;
                     }
                 }
@@ -79,6 +82,12 @@ namespace BudgetManager.Services
                 Direction = TransactionDirection.StartAmount,
                 Id = Guid.NewGuid()
             };
+        }
+
+        private async Task<IList<Transaction>> GetAccountTransactionsAsync(IUnitOfWork unitOfWork, Guid accountId)
+        {
+            IEnumerable<TransactionEntity> entities = await unitOfWork.Transactions.GetAllByAccountAsync(accountId);
+            return _transactionMapper.MapMany(entities).ToList();
         }
     }
 }

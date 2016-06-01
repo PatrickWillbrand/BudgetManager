@@ -1,4 +1,5 @@
-﻿using BudgetManager.Data.Entities;
+﻿using System.Collections.Generic;
+using BudgetManager.Data.Entities;
 using BudgetManager.Domain;
 
 namespace BudgetManager.Services.Mappings
@@ -29,6 +30,32 @@ namespace BudgetManager.Services.Mappings
                 Salt = entity.Salt,
                 UserName = entity.UserName
             };
+        }
+
+        public IEnumerable<AccountEntity> MapMany(IEnumerable<Account> items)
+        {
+            List<AccountEntity> entities = new List<AccountEntity>();
+
+            foreach (var item in items)
+            {
+                AccountEntity entity = Map(item);
+                entities.Add(entity);
+            }
+
+            return entities;
+        }
+
+        public IEnumerable<Account> MapMany(IEnumerable<AccountEntity> entities)
+        {
+            List<Account> items = new List<Account>();
+
+            foreach (var entity in entities)
+            {
+                Account item = Map(entity);
+                items.Add(item);
+            }
+
+            return items;
         }
     }
 }

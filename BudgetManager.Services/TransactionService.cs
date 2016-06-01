@@ -35,15 +35,7 @@ namespace BudgetManager.Services
             using (IUnitOfWork unitOfWork = new UnitOfWork(AppConfig.Config.ConnectionString))
             {
                 var entities = await unitOfWork.Transactions.GetAllByAccountAsync(id);
-                var transactions = new List<Transaction>();
-
-                foreach (var entity in entities)
-                {
-                    Transaction transaction = _mapper.Map(entity);
-                    transactions.Add(transaction);
-                }
-
-                return transactions;
+                return _mapper.MapMany(entities);
             }
         }
     }
