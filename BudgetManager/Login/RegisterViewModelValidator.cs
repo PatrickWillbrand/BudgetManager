@@ -7,13 +7,13 @@ namespace BudgetManager.Login
         public RegisterViewModelValidator()
         {
             RuleFor(register => register.FirstName).NotEmpty().WithMessage("Geben Sie einen Vornamen ein.");
-            RuleFor(register => register.FirstName).Length(0, 100).WithMessage("Die Länge der Vornamens beträgt mehr als 100 Zeichen");
+            RuleFor(register => register.FirstName).Length(0, 100).WithMessage("Die Länge der Vornamens beträgt mehr als 100 Zeichen.");
 
             RuleFor(register => register.LastName).NotEmpty().WithMessage("Geben Sie einen Nachnamen ein.");
-            RuleFor(register => register.LastName).Length(0, 100).WithMessage("Die Länge der Nachnames beträgt mehr als 100 Zeichen");
+            RuleFor(register => register.LastName).Length(0, 100).WithMessage("Die Länge der Nachnames beträgt mehr als 100 Zeichen.");
 
             RuleFor(register => register.UserName).NotEmpty().WithMessage("Geben Sie einen Benutzernamen ein.");
-            RuleFor(register => register.UserName).Length(0, 100).WithMessage("Die Länge der Benutzernamens beträgt mehr als 100 Zeichen");
+            RuleFor(register => register.UserName).Length(0, 100).WithMessage("Die Länge der Benutzernamens beträgt mehr als 100 Zeichen.");
 
             RuleFor(register => register.Password).NotEmpty().WithMessage("Geben Sie ein Passwort ein.");
 

@@ -12,7 +12,8 @@ namespace BudgetManager.Login
         private string _repeatPassword;
         private decimal _startAmount;
 
-        public RegisterViewModel(IAccountService accountService) : base(new RegisterViewModelValidator())
+        public RegisterViewModel(IAccountService accountService)
+            : base(new RegisterViewModelValidator())
         {
             _accountService = accountService;
             _account = new Account();

@@ -14,7 +14,8 @@ namespace BudgetManager.Login
         private string _password;
         private string _userName;
 
-        public LoginViewModel(IAccountService accountService) : base(new LoginViewModelValidator())
+        public LoginViewModel(IAccountService accountService)
+            : base(new LoginViewModelValidator())
         {
             _accountService = accountService;
         }

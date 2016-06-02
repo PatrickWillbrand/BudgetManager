@@ -7,12 +7,12 @@ using FluentValidation.Results;
 
 namespace BudgetManager.Validation
 {
-    public abstract class ValidatableScreen<T> : Screen, IValidatable where T : class
+    public abstract class ValidatableScreen<TViewModel> : Screen, IValidatable where TViewModel : PropertyChangedBase
     {
         private bool _canValidate;
-        private AbstractValidator<T> _validator;
+        private AbstractValidator<TViewModel> _validator;
 
-        public ValidatableScreen(AbstractValidator<T> validator)
+        public ValidatableScreen(AbstractValidator<TViewModel> validator)
         {
             _validator = validator;
             _canValidate = false;
@@ -31,7 +31,7 @@ namespace BudgetManager.Validation
         {
             get
             {
-                T instance = this as T;
+                TViewModel instance = this as TViewModel;
                 ValidationResult results = _validator.Validate(instance);
                 return results.IsValid;
             }
@@ -58,14 +58,14 @@ namespace BudgetManager.Validation
 
         public IEnumerable<ValidationFailure> ValidateAll()
         {
-            T instance = this as T;
+            TViewModel instance = this as TViewModel;
             ValidationResult results = _validator.Validate(instance);
             return results.Errors;
         }
 
         public IEnumerable<ValidationFailure> ValidateProperty(string propertyName)
         {
-            T instance = this as T;
+            TViewModel instance = this as TViewModel;
             ValidationResult results = _validator.Validate(instance, propertyName);
             return results.Errors;
         }
