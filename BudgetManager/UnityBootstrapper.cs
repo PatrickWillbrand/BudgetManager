@@ -30,8 +30,8 @@ namespace BudgetManager
         protected override void Configure()
         {
             _container = new UnityContainer();
-            _container.RegisterType<IWindowManager, WindowManager>();
-            _container.RegisterType<IEventAggregator, EventAggregator>();
+            _container.RegisterType<IWindowManager, WindowManager>(new ContainerControlledLifetimeManager());
+            _container.RegisterType<IEventAggregator, EventAggregator>(new ContainerControlledLifetimeManager());
 
             _container.RegisterType<IMapper<Account, AccountEntity>, AccountMapper>();
             _container.RegisterType<IMapper<Category, CategoryEntity>, CategoryMapper>();
