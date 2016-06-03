@@ -79,7 +79,7 @@ namespace BudgetManager.Categories
                 }
                 else
                 {
-
+                    await _categoryService.EditAsync(_category);
                 }
 
                 PublishCategorySaved(_category);

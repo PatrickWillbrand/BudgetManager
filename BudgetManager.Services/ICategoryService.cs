@@ -8,6 +8,8 @@ namespace BudgetManager.Services
     {
         Task AddAsync(Category category);
 
+        Task EditAsync(Category category);
+
         Task<IEnumerable<Category>> GetAll();
     }
 }

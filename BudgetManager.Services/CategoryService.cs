@@ -30,6 +30,16 @@ namespace BudgetManager.Services
             }
         }
 
+        public async Task EditAsync(Category category)
+        {
+            using (IUnitOfWork unitOfWork = new UnitOfWork(AppConfig.Config.ConnectionString))
+            {
+                CategoryEntity entity = _mapper.Map(category);
+                await unitOfWork.Categories.UpdateAsync(entity);
+                unitOfWork.Commit();
+            }
+        }
+
         public async Task<IEnumerable<Category>> GetAll()
         {
             using (IUnitOfWork unitOfWork = new UnitOfWork(AppConfig.Config.ConnectionString))
