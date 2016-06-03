@@ -18,9 +18,16 @@ namespace BudgetManager.Services
             _mapper = mapper;
         }
 
-        public Task AddAsync(Category category)
+        public async Task AddAsync(Category category)
         {
-            throw new NotImplementedException();
+            using (IUnitOfWork unitOfWork = new UnitOfWork(AppConfig.Config.ConnectionString))
+            {
+                category.Id = Guid.NewGuid();
+
+                CategoryEntity entity = _mapper.Map(category);
+                await unitOfWork.Categories.InsertAsync(entity);
+                unitOfWork.Commit();
+            }
         }
 
         public async Task<IEnumerable<Category>> GetAll()

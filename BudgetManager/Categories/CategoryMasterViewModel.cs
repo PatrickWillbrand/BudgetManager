@@ -1,25 +1,29 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using BudgetManager.Domain;
-using BudgetManager.Handles;
+using BudgetManager.Messages;
 using BudgetManager.Services;
 using Caliburn.Micro;
 
 namespace BudgetManager.Categories
 {
-    public class CategoryMasterViewModel : Screen
+    public class CategoryMasterViewModel : Screen, IHandle<CategorySavedMessage>
     {
         private readonly ICategoryService _categoryService;
         private readonly IEventAggregator _eventAggregator;
-        private ObservableCollection<Category> _categories;
-        private Category _selectedItem;
+        private ObservableCollection<CategoryListItemViewModel> _categories;
+        private CategoryListItemViewModel _selectedItem;
 
         public CategoryMasterViewModel(IEventAggregator eventAggregator, ICategoryService categoryService)
         {
             _eventAggregator = eventAggregator;
+            _eventAggregator.Subscribe(this);
+
             _categoryService = categoryService;
         }
 
-        public ObservableCollection<Category> Categories
+        public ObservableCollection<CategoryListItemViewModel> Categories
         {
             get { return _categories; }
             private set
@@ -29,36 +33,61 @@ namespace BudgetManager.Categories
             }
         }
 
-        public Category SelectedItem
+        public CategoryListItemViewModel SelectedItem
         {
             get { return _selectedItem; }
             set
             {
                 _selectedItem = value;
                 NotifyOfPropertyChange(() => SelectedItem);
-                PublishCategoryChanged(_selectedItem);
+                PublishCategoryChanged(SelectedItem);
             }
         }
 
         public void AddNewCategory()
         {
-            // Null übergeben um eine neue Kategorie anzulegen.
-            PublishCategoryChanged(null);
+            SelectedItem = null;
+        }
+
+        public void Handle(CategorySavedMessage message)
+        {
+            if (Categories.Any(x => x.Id == message.Category.Id))
+            {
+                CategoryListItemViewModel listItem = Categories.FirstOrDefault(x => x.Id == message.Category.Id);
+                listItem.CategoryName = message.Category.Name;
+                listItem.Description = message.Category.Description;
+            }
+            else
+            {
+                Categories.Add(new CategoryListItemViewModel(message.Category));
+            }
         }
 
         protected async override void OnViewLoaded(object view)
         {
-            Categories = new ObservableCollection<Category>(await _categoryService.GetAll());
+            IEnumerable<Category> categories = await _categoryService.GetAll();
+            Categories = new ObservableCollection<CategoryListItemViewModel>();
+
+            foreach (var item in categories)
+            {
+                Categories.Add(new CategoryListItemViewModel(item));
+            }
 
             base.OnViewLoaded(view);
         }
 
-        private void PublishCategoryChanged(Category category)
+        private void PublishCategoryChanged(CategoryListItemViewModel viewModel)
         {
-            CategoryChangedMessage message = new CategoryChangedMessage
+            var message = new CategoryChangedMessage();
+            if (viewModel != null)
             {
-                NewCategory = category
-            };
+                message.NewCategory = viewModel.Category;
+            }
+            else
+            {
+                // Um eine neue Kategorie anzulegen übergeben wir null.
+                message.NewCategory = null;
+            }
 
             _eventAggregator.PublishOnUIThread(message);
         }

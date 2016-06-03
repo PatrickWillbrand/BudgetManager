@@ -16,15 +16,25 @@
                  SelectedItem="{Binding SelectedItem}"
                  Grid.Row="0"
                  Grid.IsSharedSizeScope="True"
+                 HorizontalContentAlignment="Stretch"
                  Margin="0 8">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type domain:Category}">
-                    <Border x:Name="Border" Padding="4">
-                        <Grid>
-                            <StackPanel Margin="8 0 0 0" Grid.Column="1">
-                                <TextBlock FontWeight="Bold" Text="{Binding Name}" />
-                                <TextBlock Text="{Binding Description}" />
-                            </StackPanel>
+                    <Border x:Name="Border">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0"
+                                       Margin="8 0 0 0"
+                                       FontWeight="Bold"
+                                       Text="{Binding CategoryName}" />
+                            
+                            <TextBlock Grid.Row="1"
+                                       Margin="8 0 0 0"
+                                       Text="{Binding Description}"
+                                       TextWrapping="Wrap" />
                         </Grid>
                     </Border>
                     <DataTemplate.Triggers>

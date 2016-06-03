@@ -118,6 +118,7 @@
       <DependentUpon>CategoryDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Categories\CategoryDetailsViewModel.cs" />
+    <Compile Include="Categories\CategoryListItemViewModel.cs" />
     <Compile Include="Categories\CategoryMasterView.xaml.cs">
       <DependentUpon>CategoryMasterView.xaml</DependentUpon>
     </Compile>
@@ -140,6 +141,7 @@
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainViewModel.cs" />
+    <Compile Include="Messages\CategorySavedMessage.cs" />
     <Compile Include="Settings\SettingsWorkspaceView.xaml.cs">
       <DependentUpon>SettingsWorkspaceView.xaml</DependentUpon>
     </Compile>

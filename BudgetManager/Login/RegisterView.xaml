@@ -146,6 +146,7 @@
 
             <Button x:Name="RegisterAccountAsync"
                     Grid.Row="5"
+                    HorizontalAlignment="Right"
                     Style="{DynamicResource MaterialDesignRaisedButton}"
                     Margin="0 24">
                 <StackPanel Orientation="Horizontal">

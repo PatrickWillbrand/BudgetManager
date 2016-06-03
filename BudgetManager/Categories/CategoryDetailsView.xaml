@@ -7,48 +7,39 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Margin="16"
-          IsEnabled="{Binding IsEnabled}">
+          Width="400"
+          Height="300">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBox x:Name="Name"
-                 Grid.Row="0"
+        <TextBlock x:Name="DisplayName"
+                   Grid.Row="0"
+                   Style="{StaticResource MaterialDesignHeadlineTextBlock}"
+                   Margin="0 0 0 24" />
+
+        <TextBox x:Name="CategoryName"
+                 Grid.Row="1"
                  Margin="0 8"
                  materialDesign:TextFieldAssist.Hint="Name der Kategorie" />
 
         <TextBox x:Name="Description"
-                 Grid.Row="1"
+                 Grid.Row="2"
                  Margin="0 8"
                  AcceptsReturn="True"
                  TextWrapping="Wrap"
                  materialDesign:TextFieldAssist.Hint="Beschreibung" />
 
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            
-            <Button x:Name="Save"
-                    Grid.Column="0"
+        <StackPanel Grid.Row="3"
+                    Margin="0 16 0 0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button x:Name="DeleteAsync"
                     Margin="0 0 8 0"
-                    Style="{DynamicResource MaterialDesignRaisedButton}">
-                <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="ContentSave" />
-                    <TextBlock Margin="8 0 0 0" 
-                               VerticalAlignment="Center"
-                               Text="Speichern" />
-                </StackPanel>
-            </Button>
-
-            <Button x:Name="Delete"
-                    Grid.Column="1"
-                    Margin="4 0 4 0"
+                    Width="120"
                     Style="{DynamicResource MaterialDesignRaisedButton}">
                 <StackPanel Orientation="Horizontal">
                     <materialDesign:PackIcon Kind="Delete" />
@@ -58,17 +49,17 @@
                 </StackPanel>
             </Button>
 
-            <Button x:Name="Abbrechen"
-                    Grid.Column="2"
-                    Margin="8 0 0 0"
+            <Button x:Name="SaveAsync"
+                    Margin="0 0 0 0"
+                    Width="120"
                     Style="{DynamicResource MaterialDesignRaisedButton}">
                 <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="Close" />
+                    <materialDesign:PackIcon Kind="ContentSave" />
                     <TextBlock Margin="8 0 0 0" 
                                VerticalAlignment="Center"
-                               Text="Abbrechen" />
+                               Text="Speichern" />
                 </StackPanel>
             </Button>
-        </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -1,6 +1,6 @@
 ﻿using BudgetManager.Domain;
 
-namespace BudgetManager.Handles
+namespace BudgetManager.Messages
 {
     public class CategoryChangedMessage
     {

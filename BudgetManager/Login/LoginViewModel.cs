@@ -47,12 +47,12 @@ namespace BudgetManager.Login
                 try
                 {
                     Account account = await _accountService.LoginAsync(UserName, Password);
-                    MainViewModel viewModel = new MainViewModel(account);
+                    var viewModel = new MainViewModel(account);
                     ((IConductor)Parent).ActivateItem(viewModel);
                 }
                 catch (Exception ex)
                 {
-                    MessageDialog dialog = new MessageDialog
+                    var dialog = new MessageDialog
                     {
                         Message = { Text = ex.Message },
                         Title = { Text = "Fehler bei der Anmeldung" }

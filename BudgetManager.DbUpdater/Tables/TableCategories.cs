@@ -8,7 +8,7 @@
         {
             AddColumn("Id", "uniqueidentifier");
             AddColumn("Name", "varchar(100)");
-            AddColumn("Description", "varchar(5000)");
+            AddColumn("Description", "varchar(5000)", true);
             AddPrimaryKey("Id");
         }
     }
