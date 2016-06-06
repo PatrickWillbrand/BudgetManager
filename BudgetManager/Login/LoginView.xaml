@@ -16,97 +16,99 @@
             <Setter Property="Margin" Value="0 8 0 8" />
         </Style>
     </UserControl.Resources>
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center"
-          Height="420" Width="550">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <materialDesign:Card HorizontalAlignment="Center" VerticalAlignment="Center"
+                         Height="420" Width="550">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0"
-                   Style="{StaticResource MaterialDesignDisplay1TextBlock}"
-                   Margin="16 16 16 2"
-                   Text="Anmeldung" />
+            <TextBlock Grid.Row="0"
+                       Style="{StaticResource MaterialDesignDisplay1TextBlock}"
+                       Margin="16 16 16 2"
+                       Text="Anmeldung" />
 
-        <Grid Grid.Row="1"
-              Margin="16">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1"
+                  Margin="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0"
-                  Margin="8 24">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                
-                <Grid Grid.Row="0"
-                      Margin="0 8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <materialDesign:PackIcon Grid.Column="0" 
-                                             Kind="Account"
-                                             VerticalAlignment="Center"
-                                             Foreground="{Binding ElementName=UserName, Path=BorderBrush}" />
-                    <TextBox x:Name="UserName"
-                             Grid.Column="1"
-                             materialDesign:TextFieldAssist.Hint="Benutzername" />
-                </Grid>
-
-                <Grid Grid.Row="1"
-                      Margin="0 8">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <materialDesign:PackIcon Grid.Column="0" 
-                                             Kind="Lock"
-                                             VerticalAlignment="Center"
-                                             Foreground="{Binding ElementName=Password, Path=BorderBrush}" />
-                    <PasswordBox x:Name="Password"
-                                 Grid.Column="1"
-                                 materialDesign:TextFieldAssist.Hint="Passwort"
-                                 controls:BoundPasswordBox.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
-                </Grid>
-
-                <Button x:Name="LoginAsync"
-                        Grid.Row="2"
-                        Style="{DynamicResource MaterialDesignRaisedButton}"
-                        Margin="0 16">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Login" />
-                        <TextBlock Margin="8 0 0 0" 
-                                   VerticalAlignment="Center"
-                                   Text="Anmelden" />
-                    </StackPanel>
-                </Button>
-            </Grid>
-
-            <Border Grid.Column="1"
-                    Margin="8 0"
-                    BorderThickness="1 0 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}">
-                <Grid Margin="16 24 0 24">
+                <Grid Grid.Column="0"
+                      Margin="8 24">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
+                
+                    <Grid Grid.Row="0"
+                          Margin="0 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <materialDesign:PackIcon Grid.Column="0" 
+                                                 Kind="Account"
+                                                 VerticalAlignment="Center"
+                                                 Foreground="{Binding ElementName=UserName, Path=BorderBrush}" />
+                        <TextBox x:Name="UserName"
+                                 Grid.Column="1"
+                                 materialDesign:TextFieldAssist.Hint="Benutzername" />
+                    </Grid>
 
-                    <Button x:Name="ShowRegister"
+                    <Grid Grid.Row="1"
+                          Margin="0 8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <materialDesign:PackIcon Grid.Column="0" 
+                                                 Kind="Lock"
+                                                 VerticalAlignment="Center"
+                                                 Foreground="{Binding ElementName=Password, Path=BorderBrush}" />
+                        <PasswordBox x:Name="Password"
+                                     Grid.Column="1"
+                                     materialDesign:TextFieldAssist.Hint="Passwort"
+                                     controls:BoundPasswordBox.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" />
+                    </Grid>
+
+                    <Button x:Name="LoginAsync"
                             Grid.Row="2"
-                            Style="{DynamicResource MaterialDesignRaisedButton}">
+                            Style="{DynamicResource MaterialDesignRaisedButton}"
+                            Margin="0 16">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="AccountPlus" />
+                            <materialDesign:PackIcon Kind="Login" />
                             <TextBlock Margin="8 0 0 0" 
                                        VerticalAlignment="Center"
-                                       Text="Neues Konto erstellen" />
+                                       Text="Anmelden" />
                         </StackPanel>
                     </Button>
                 </Grid>
-            </Border>
+
+                <Border Grid.Column="1"
+                        Margin="8 0"
+                        BorderThickness="1 0 0 0" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                    <Grid Margin="16 24 0 24">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Button x:Name="ShowRegister"
+                                Grid.Row="2"
+                                Style="{DynamicResource MaterialDesignRaisedButton}">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="AccountPlus" />
+                                <TextBlock Margin="8 0 0 0" 
+                                           VerticalAlignment="Center"
+                                           Text="Neues Konto erstellen" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </Border>
+            </Grid>
         </Grid>
-    </Grid>
+    </materialDesign:Card>
 </UserControl>

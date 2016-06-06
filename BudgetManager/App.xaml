@@ -28,6 +28,9 @@
 
                 <!-- Dragablz Material Design -->
                 <ResourceDictionary Source="pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml"/>
+                
+                <!-- Custom Themes -->
+                <ResourceDictionary Source="pack://application:,,,/BudgetManager;component/Themes/Colors.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <!-- MahApps Brushes -->

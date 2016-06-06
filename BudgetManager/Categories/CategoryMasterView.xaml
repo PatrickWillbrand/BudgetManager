@@ -12,39 +12,45 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ListBox x:Name="Categories"
-                 SelectedItem="{Binding SelectedItem}"
-                 Grid.Row="0"
-                 Grid.IsSharedSizeScope="True"
-                 HorizontalContentAlignment="Stretch"
-                 Margin="0 8">
-            <ListBox.ItemTemplate>
-                <DataTemplate DataType="{x:Type domain:Category}">
-                    <Border x:Name="Border">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0"
-                                       Margin="8 0 0 0"
-                                       FontWeight="Bold"
-                                       Text="{Binding CategoryName}" />
+
+        <materialDesign:Card Grid.Row="0"
+                             VerticalAlignment="Stretch"
+                             Margin="0 0 0 8"
+                             Grid.IsSharedSizeScope="True">
+            <ListBox x:Name="Categories"
+                     SelectedItem="{Binding SelectedItem}"
+                     HorizontalContentAlignment="Stretch"
+                     Margin="0 8">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type domain:Category}">
+                        <Border x:Name="Border"
+                                Padding="4"
+                                BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}" >
+                            <Grid HorizontalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0"
+                                           Margin="8 0 0 0"
+                                           FontWeight="Bold"
+                                           Text="{Binding CategoryName}" />
                             
-                            <TextBlock Grid.Row="1"
-                                       Margin="8 0 0 0"
-                                       Text="{Binding Description}"
-                                       TextWrapping="Wrap" />
-                        </Grid>
-                    </Border>
-                    <DataTemplate.Triggers>
-                        <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
-                        </DataTrigger>
-                    </DataTemplate.Triggers>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+                                <TextBlock Grid.Row="1"
+                                           Margin="8 0 0 0"
+                                           Text="{Binding Description}"
+                                           TextWrapping="Wrap" />
+                            </Grid>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </materialDesign:Card>
 
         <Button x:Name="AddNewCategory"
                 Grid.Row="1"

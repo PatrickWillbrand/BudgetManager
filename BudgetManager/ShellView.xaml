@@ -12,7 +12,7 @@
                    TextElement.FontSize="16"
                    TextOptions.TextFormattingMode="Ideal" 
                    TextOptions.TextRenderingMode="Auto"
-                   Background="{DynamicResource MaterialDesignPaper}"
+                   Background="{StaticResource ShellBackground}"
                    GlowBrush="{DynamicResource AccentColorBrush}"
                    FontFamily="{StaticResource MaterialDesignFont}"
                    Height="768" Width="1024"
