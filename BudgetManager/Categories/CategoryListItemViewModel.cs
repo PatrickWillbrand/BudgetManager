@@ -7,6 +7,7 @@ namespace BudgetManager.Categories
     public class CategoryListItemViewModel : PropertyChangedBase
     {
         private Category _category;
+        private bool _isSelected;
 
         public CategoryListItemViewModel(Category category)
         {
@@ -41,6 +42,16 @@ namespace BudgetManager.Categories
         public Guid Id
         {
             get { return _category.Id; }
+        }
+
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set
+            {
+                _isSelected = value;
+                NotifyOfPropertyChange(() => IsSelected);
+            }
         }
     }
 }

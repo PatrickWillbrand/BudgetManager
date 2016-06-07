@@ -11,5 +11,7 @@ namespace BudgetManager.Services
         Task EditAsync(Category category);
 
         Task<IEnumerable<Category>> GetAll();
+
+        Task RemoveAsync(Category category);
     }
 }

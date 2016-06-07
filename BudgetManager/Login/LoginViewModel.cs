@@ -52,10 +52,9 @@ namespace BudgetManager.Login
                 }
                 catch (Exception ex)
                 {
-                    var dialog = new MessageDialog
+                    var dialog = new MessageDialogView
                     {
-                        Message = { Text = ex.Message },
-                        Title = { Text = "Fehler bei der Anmeldung" }
+                        DataContext = new MessageDialogViewModel { Message = ex.Message, Title = "Fehler bei der Anmeldung" }
                     };
 
                     await DialogHost.Show(dialog, "RootDialog");

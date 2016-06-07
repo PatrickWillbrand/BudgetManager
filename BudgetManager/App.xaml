@@ -31,6 +31,7 @@
                 
                 <!-- Custom Themes -->
                 <ResourceDictionary Source="pack://application:,,,/BudgetManager;component/Themes/Colors.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/BudgetManager;component/Themes/ListBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <!-- MahApps Brushes -->

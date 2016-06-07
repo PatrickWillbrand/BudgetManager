@@ -54,8 +54,16 @@ namespace BudgetManager.Categories
             if (Categories.Any(x => x.Id == message.Category.Id))
             {
                 CategoryListItemViewModel listItem = Categories.FirstOrDefault(x => x.Id == message.Category.Id);
-                listItem.CategoryName = message.Category.Name;
-                listItem.Description = message.Category.Description;
+
+                if (message.IsRemoved)
+                {
+                    Categories.Remove(listItem);
+                }
+                else
+                {
+                    listItem.CategoryName = message.Category.Name;
+                    listItem.Description = message.Category.Description;
+                }
             }
             else
             {
@@ -78,7 +86,7 @@ namespace BudgetManager.Categories
 
         private void PublishCategoryChanged(CategoryListItemViewModel viewModel)
         {
-            var message = new CategoryChangedMessage();
+            var message = new CategorySelectedChangedMessage();
             if (viewModel != null)
             {
                 message.NewCategory = viewModel.Category;

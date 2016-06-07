@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="BudgetManager.Dialogs.ResultDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Margin="0 6 0 16"
+                   Grid.Row="0"
+                   Text="{Binding Title}"
+                   Style="{StaticResource MaterialDesignHeadlineTextBlock}" />
+
+        <TextBlock Margin="0 6 0 0"
+                   FontSize="18"
+                   Grid.Row="1"
+                   Text="{Binding Message}" />
+
+        <StackPanel Grid.Row="2"
+                    HorizontalAlignment="Right"
+                    Margin="16 16 16 0"
+                    Orientation="Horizontal">
+            <Button Style="{DynamicResource MaterialDesignFlatButton}"
+                    Command="{Binding YesCommand}">
+                JA
+            </Button>
+
+            <Button IsDefault="True"
+                    Margin="8 0 0 0"
+                    Style="{DynamicResource MaterialDesignFlatButton}"
+                    Command="{Binding NoCommand}">
+                NEIN
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

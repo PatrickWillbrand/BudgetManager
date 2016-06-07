@@ -132,16 +132,22 @@
       <DependentUpon>DashboardWorkspaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\DashboardWorkspaceViewModel.cs" />
-    <Compile Include="Dialogs\MessageDialog.xaml.cs">
-      <DependentUpon>MessageDialog.xaml</DependentUpon>
+    <Compile Include="Dialogs\ResultDialogView.xaml.cs">
+      <DependentUpon>ResultDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Messages\CategoryChangedMessage.cs" />
+    <Compile Include="Dialogs\MessageDialogView.xaml.cs">
+      <DependentUpon>MessageDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\MessageDialogViewModel.cs" />
+    <Compile Include="Dialogs\ResultDialogViewModel.cs" />
+    <Compile Include="Messages\CategorySelectedChangedMessage.cs" />
     <Compile Include="Login\LoginViewModelValidator.cs" />
     <Compile Include="MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Messages\CategorySavedMessage.cs" />
+    <Compile Include="MVVM\RelayCommand.cs" />
     <Compile Include="Settings\SettingsWorkspaceView.xaml.cs">
       <DependentUpon>SettingsWorkspaceView.xaml</DependentUpon>
     </Compile>
@@ -179,7 +185,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\MessageDialog.xaml">
+    <Page Include="Dialogs\ResultDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\MessageDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,6 +222,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Themes\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ListBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

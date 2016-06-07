@@ -48,5 +48,15 @@ namespace BudgetManager.Services
                 return _mapper.MapMany(entites);
             }
         }
+
+        public async Task RemoveAsync(Category category)
+        {
+            using (IUnitOfWork unitOfWork = new UnitOfWork(AppConfig.Config.ConnectionString))
+            {
+                CategoryEntity entity = _mapper.Map(category);
+                await unitOfWork.Categories.RemoveAsync(entity);
+                unitOfWork.Commit();
+            }
+        }
     }
 }

@@ -1,12 +1,15 @@
-﻿using BudgetManager.Domain;
+﻿using System.Windows;
+using BudgetManager.Dialogs;
+using BudgetManager.Domain;
 using BudgetManager.Messages;
 using BudgetManager.Services;
 using BudgetManager.Validation;
 using Caliburn.Micro;
+using MaterialDesignThemes.Wpf;
 
 namespace BudgetManager.Categories
 {
-    public class CategoryDetailsViewModel : ValidatableScreen<CategoryDetailsViewModel>, IHandle<CategoryChangedMessage>
+    public class CategoryDetailsViewModel : ValidatableScreen<CategoryDetailsViewModel>, IHandle<CategorySelectedChangedMessage>
     {
         private readonly ICategoryService _categoryService;
         private readonly IEventAggregator _eventAggregator;
@@ -51,9 +54,28 @@ namespace BudgetManager.Categories
 
         public async void DeleteAsync()
         {
+            var viewModel = new ResultDialogViewModel
+            {
+                Message = "Wollen Sie die ausgewählte Kategorie wirklich löschen?",
+                Title = "Kategorie löschen"
+            };
+
+            var dialog = new ResultDialogView
+            {
+                DataContext = viewModel
+            };
+
+            await DialogHost.Show(dialog, "RootDialog");
+
+            if (viewModel.Result == MessageBoxResult.Yes)
+            {
+                await _categoryService.RemoveAsync(_category);
+                PublishCategorySaved(_category, true);
+                NewCategory();
+            }
         }
 
-        public void Handle(CategoryChangedMessage message)
+        public void Handle(CategorySelectedChangedMessage message)
         {
             // Wenn die Nachricht eine null übergibt, dann legen wir eine neue Kategorie an.
             if (message.NewCategory == null)
@@ -82,7 +104,7 @@ namespace BudgetManager.Categories
                     await _categoryService.EditAsync(_category);
                 }
 
-                PublishCategorySaved(_category);
+                PublishCategorySaved(_category, false);
                 DisplayName = _category.Name;
             }
         }
@@ -103,11 +125,12 @@ namespace BudgetManager.Categories
             DisplayName = "Neue Kategorie anlegen";
         }
 
-        private void PublishCategorySaved(Category category)
+        private void PublishCategorySaved(Category category, bool isRemoved)
         {
-            var message = new CategorySavedMessage()
+            var message = new CategorySavedMessage
             {
-                Category = category
+                Category = category,
+                IsRemoved = isRemoved
             };
 
             _eventAggregator.PublishOnUIThread(message);

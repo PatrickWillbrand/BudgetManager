@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:domain="clr-namespace:BudgetManager.Domain;assembly=BudgetManager.Domain"
+             xmlns:local="clr-namespace:BudgetManager.Categories"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Margin="16">
@@ -19,32 +19,40 @@
                              Grid.IsSharedSizeScope="True">
             <ListBox x:Name="Categories"
                      SelectedItem="{Binding SelectedItem}"
-                     HorizontalContentAlignment="Stretch"
-                     Margin="0 8">
+                     HorizontalContentAlignment="Stretch">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItemWithoutPadding}">
+                        <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
-                    <DataTemplate DataType="{x:Type domain:Category}">
+                    <DataTemplate DataType="{x:Type local:CategoryListItemViewModel}">
                         <Border x:Name="Border"
-                                Padding="4"
-                                BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}" >
-                            <Grid HorizontalAlignment="Stretch">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0"
-                                           Margin="8 0 0 0"
-                                           FontWeight="Bold"
-                                           Text="{Binding CategoryName}" />
+                                BorderThickness="0 0 0 1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+                            <Border x:Name="InnerBorder"
+                                    Padding="8">
+                                <Grid HorizontalAlignment="Stretch">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0"
+                                               Margin="8 0 0 0"
+                                               FontWeight="Bold"
+                                               Text="{Binding CategoryName}" />
                             
-                                <TextBlock Grid.Row="1"
-                                           Margin="8 0 0 0"
-                                           Text="{Binding Description}"
-                                           TextWrapping="Wrap" />
-                            </Grid>
+                                    <TextBlock Grid.Row="1"
+                                               Margin="8 0 0 0"
+                                               Text="{Binding Description}"
+                                               TextWrapping="Wrap" />
+                                </Grid>
+                            </Border>
                         </Border>
                         <DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding IsSelected}" Value="True">
                                 <Setter TargetName="Border" Property="Background" Value="{DynamicResource MaterialDesignSelection}" />
+                                <Setter TargetName="InnerBorder" Property="BorderBrush" Value="{DynamicResource PrimaryHueMidBrush}" />
+                                <Setter TargetName="InnerBorder" Property="BorderThickness" Value="3 0 0 0" />
                             </DataTrigger>
                         </DataTemplate.Triggers>
                     </DataTemplate>

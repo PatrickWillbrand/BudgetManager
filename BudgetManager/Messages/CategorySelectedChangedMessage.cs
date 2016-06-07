@@ -2,7 +2,7 @@
 
 namespace BudgetManager.Messages
 {
-    public class CategoryChangedMessage
+    public class CategorySelectedChangedMessage
     {
         public Category NewCategory { get; set; }
     }
