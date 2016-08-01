@@ -15,7 +15,6 @@ namespace BudgetManager
         {
             _account = account;
 
-
             Items.Add(new DashboardWorkspaceViewModel() { DisplayName = "Dashboard" });
             Items.Add(new TransactionsWorkspaceViewModel() { DisplayName = "Buchungen" });
             Items.Add(new CategoryWorkspaceViewModel() { DisplayName = "Kategorien" });
